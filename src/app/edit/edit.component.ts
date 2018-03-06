@@ -62,6 +62,19 @@ export class EditComponent implements OnInit{
   }
 
   addContact () {
-    let new_id = this.contacts[this.contacts.length - 1].id + 1;
+    let contacts_length = this.contacts.length;
+    let new_id = this.contacts[contacts_length - 1].id + 1;
+    let new_contact = {
+      "id": this.editId,
+      "name": this.contact.name,
+      "telNum": this.contact.telNum,
+      "address": this.contact.address,
+      "email": this.contact.email,
+      "birthday": this.contact.birthday,
+      "collection": 0
+    }
+    this.contacts.push(new_contact);
+    sessionStorage.setItem("contacts",JSON.stringify(this.contacts));
+    this._router.navigate(['']);
   }
 }
