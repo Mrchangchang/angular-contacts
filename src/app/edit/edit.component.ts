@@ -4,6 +4,9 @@ import { Location} from "@angular/common";
 import { ContactService } from "../shared";
 import { UtilService } from "../shared/util.service"
 
+const ClickingBackColor = '#eee';
+
+
 @Component({
   selector: "edit",
   templateUrl: "./edit.component.html",
@@ -18,12 +21,12 @@ export class EditComponent implements OnInit{
   isName: boolean = false;
   isPhoneNum: boolean = false;
   isAddr: boolean = false;
-  isEamail: boolean = false;
+  isEmail: boolean = false;
   isBir: boolean = false;
   nameTip: boolean = false;
   phoneTip: boolean = false;
   addrTip: boolean = false;
-  enailTip: boolean = false;
+  emailTip: boolean = false;
   birTip: boolean = false;
 
   constructor(
@@ -35,12 +38,13 @@ export class EditComponent implements OnInit{
   ) {}
 
   ngOnInit() {
+    this.getContacts();
     this._activatedRouter.params.subscribe(params => {
       this.editId = params['id'];
       this.isAdd = !this.editId;
     })
     this.operateTitle = this.isAdd?"新建联系人":"编辑联系人";
-
+    if(!this.isAdd) this.getContactDetailById(this.editId)
   }
 
   getContacts () {
@@ -76,5 +80,48 @@ export class EditComponent implements OnInit{
     this.contacts.push(new_contact);
     sessionStorage.setItem("contacts",JSON.stringify(this.contacts));
     this._router.navigate(['']);
+  }
+  editContact () {
+    let edit_contact = {
+      "id": this.editId,
+      "name": this.contact.name,
+      "telNum": this.contact.telNum,
+      "address": this.contact.address,
+      "email": this.contact.email,
+      "birthday": this.contact.birthday,
+      "collection": 0
+    }
+    let ss_session = sessionStorage.getItem('contacts');
+    this.contacts = JSON.parse(ss_session);
+    this.contacts.splice(this.editId - 1,1, edit_contact);
+    sessionStorage.setItem('contacts',JSON.stringify(this.contacts));
+    this._router.navigate(['/list',this.editId]);
+  }
+
+  cancleOperate () {
+    this._location.back();
+  }
+
+  //失去焦点事件
+  onBlurName () {
+    this.nameTip = true;
+    this.isName = this.contact.name? true: false;
+  }
+
+  onBlurPhone () {
+    this.phoneTip = true;
+    this.isPhoneNum = this._utilService.checkPhoneNum(this.contact.phoneNum);
+  }
+  onBlurAddr () {
+    this.addrTip = true;
+    this.isAddr = this.contact.address? true: false;
+  }
+  onBlurEmail () {
+    this.emailTip = true;
+    this.isEmail = this._utilService.checkEmail(this.contact.email);
+  }
+  onBlurBir () {
+    this.birTip = true;
+    this.isBir = this.contact.birthday?true:false;
   }
 }
