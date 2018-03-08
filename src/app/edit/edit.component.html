@@ -15,8 +15,8 @@
         <p>
           <input type="text" value="{{contact.telNum}}"
           [(ngModel)]="contact.telNum" name="telNum"
-          (ngBlur)="onBlurPhone()">
-          <i *ngIf="phoneTip" [ngClass]="{green:isPhone,red: !isPhone}"></i>
+          (blur)="onBlurPhone()">
+          <i *ngIf="phoneTip" [ngClass]="{green:isPhoneNum,red: !isPhoneNum}"></i>
         </p>
       </li>
       <li>
@@ -24,8 +24,8 @@
         <p>
           <input type="text" value="{{contact.address}}"
           [(ngModel)]="contact.address" name="address"
-          (ngBlur)="onBlurAddr()">
-          <i *ngIf="addrTip" [ngClass]="{green:isAddress,red:!isAddress}"></i>
+          (blur)="onBlurAddr()">
+          <i *ngIf="addrTip" [ngClass]="{green:isAddr,red:!isAddr}"></i>
         </p>
       </li>
       <li>
@@ -33,7 +33,8 @@
         <p>
           <input type="text" value="{{contact.email}}"
           [(ngModel)]="contact.email" name="email"
-          (ngBlur)="onBlurEmail()" [ngClass]="{green:isEmail,red:!isEmail}">
+          (blur)="onBlurEmail()" [ngClass]="{green:isEmail,red:!isEmail}">
+          <i *ngIf="emailTip" [ngClass]="{green:isEmail,red:!isEmail}"></i>
         </p>
       </li>
       <li>
@@ -41,13 +42,14 @@
         <p>
           <input type="text" value="{{birthday}}"
           [(ngModel)]="contact.birthday" name="birthday"
-          (ngBlur)="onBlurBir()" placeholder="日期格式如：1992/10/12"
-          [ngClass]="{green:isBir,red:!isBir}">
+          (blur)="onBlurBir()" placeholder="日期格式如：1992/10/12"
+          >
+          <i *ngIf="emailTip" [ngClass]="{green:isBir,red:!isBir}"></i>
         </p>
       </li>
     </ul>
     <div class="btn">
-      <button type="submit" class="fl" btnClickStyle>保存</button>
+      <button type="submit" (click)="submitForm()" class="fl" btnClickStyle>保存</button>
       <button (click)="cancleOperate()" class="fr">取消</button>
     </div>
   </form>

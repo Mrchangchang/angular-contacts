@@ -47,6 +47,18 @@ export class EditComponent implements OnInit{
     if(!this.isAdd) this.getContactDetailById(this.editId)
   }
 
+  submitForm () {
+    this.nameTip = true;
+    this.phoneTip = true;
+    this.addrTip = true;
+    this.emailTip = true;
+    this.birTip = true;
+    if (this.isName && this.isPhoneNum && this.isAddr && this.isEmail && this.birTip) {
+      if (this.isAdd) this.addContact();
+      else this.editContact();
+    }
+  }
+
   getContacts () {
     this._contactService.getContactsData().subscribe(data => {
       this.contacts = data;
@@ -110,7 +122,7 @@ export class EditComponent implements OnInit{
 
   onBlurPhone () {
     this.phoneTip = true;
-    this.isPhoneNum = this._utilService.checkPhoneNum(this.contact.phoneNum);
+    this.isPhoneNum = this._utilService.checkPhoneNum(this.contact.telNum)?true: false;
   }
   onBlurAddr () {
     this.addrTip = true;
@@ -118,7 +130,7 @@ export class EditComponent implements OnInit{
   }
   onBlurEmail () {
     this.emailTip = true;
-    this.isEmail = this._utilService.checkEmail(this.contact.email);
+    this.isEmail = this._utilService.checkEmail(this.contact.email)?true:false;
   }
   onBlurBir () {
     this.birTip = true;
