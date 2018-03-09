@@ -12,6 +12,7 @@ import { EditComponent } from "./edit"
 import { ContactService,HeaderComponent,UtilService,BtnClickDirective  } from "./shared";
 import { FooterComponent} from "./shared/footer.component";
 import { DetailComponent } from "./detail";
+import { CollectionComponent} from "./collection/collection.component"
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DetailComponent } from "./detail";
     FooterComponent,
     DetailComponent,
     EditComponent,
-    BtnClickDirective
+    BtnClickDirective,
+    CollectionComponent
   ],
   imports: [
     BrowserModule,
