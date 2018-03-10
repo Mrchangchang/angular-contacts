@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { ListComponent,ListItemComponent } from "./list";
 import { EditComponent } from "./edit"
 
-import { ContactService,HeaderComponent,UtilService,BtnClickDirective  } from "./shared";
+import { ContactService,HeaderComponent,UtilService,BtnClickDirective,PhonePie  } from "./shared";
 import { FooterComponent} from "./shared/footer.component";
 import { DetailComponent } from "./detail";
 import { CollectionComponent} from "./collection/collection.component"
@@ -24,7 +24,8 @@ import { CollectionComponent} from "./collection/collection.component"
     DetailComponent,
     EditComponent,
     BtnClickDirective,
-    CollectionComponent
+    CollectionComponent,
+    PhonePie
   ],
   imports: [
     BrowserModule,
