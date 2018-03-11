@@ -24,6 +24,10 @@ export const rootRouterConfig: Routes = [
     component: EditComponent
   },
   {
+    path: "edit/:id",
+    component: EditComponent
+  },
+  {
     path: 'collection',
     component: CollectionComponent
   }

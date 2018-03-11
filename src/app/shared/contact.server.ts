@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import {HttpClient, HttpParams,HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
-const CONTACT_URL = `../../assets/mock-data/contacts.json`;
+//const CONTACT_URL = `../../assets/mock-data/contacts.json`;
+const CONTACT_URL = 'contact/getContacts';
 
 @Injectable()
 export class ContactService {

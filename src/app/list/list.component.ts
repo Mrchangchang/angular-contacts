@@ -7,7 +7,7 @@ import { ContactService } from  '../shared/contact.server';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit{
-  contacts: {};
+  contacts: any = [];
   private isAdd: number = 1;
   constructor(
     private _router: Router,
@@ -20,8 +20,11 @@ export class ListComponent implements OnInit{
     let ss_contacts = sessionStorage.getItem('contacts');
     if (!ss_contacts) {
       this._contactService.getContactsData().subscribe( data => {
-        this.contacts = data;
-        sessionStorage.setItem("contacts",JSON.stringify(this.contacts))
+        if (data.success) {
+          this.contacts = data.data;
+          sessionStorage.setItem("contacts",JSON.stringify(this.contacts))
+        }
+
       })
     } else {
       this.contacts = JSON.parse(ss_contacts);

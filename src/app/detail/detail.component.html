@@ -9,7 +9,7 @@
       <img src="../../images/Iverson.jpg" alt="">
       <span class="contact-name">
         {{detail.name}}
-        <i [ngClass] = "{collect: detail.collection == 0,collected: detail.collection == 1}"
+        <i [ngClass] = "{collect: detail.collect == 0,collected: detail.collect == 1}"
         (click)="collectTheContact()"></i>
       </span>
     </div>

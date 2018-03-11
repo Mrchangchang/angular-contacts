@@ -31,10 +31,10 @@ export class DetailComponent implements OnInit, OnDestroy{
   }
 
   collectTheContact () {
-    this.detail.collection == 0? this.detail.collection =1: this.detail.collection = 0;
+    this.detail.collect == 0? this.detail.collect =1: this.detail.collect = 0;
     let ss_contacts = sessionStorage.getItem("contacts");
     this.contacts = JSON.parse(ss_contacts);
-    this.contacts[this.contact_id - 1] = this.detail.collection;
+    this.contacts[this.contact_id - 1] = this.detail.collect;
     sessionStorage.setItem("contacts",JSON.stringify(this.contacts));
   }
 
